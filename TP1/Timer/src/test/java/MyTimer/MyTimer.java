@@ -1,4 +1,4 @@
-package U1_Algoritmos.Ej2_MyTimer;
+package MyTimer;
 
 public class MyTimer {
     private final long start;

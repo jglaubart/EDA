@@ -1,4 +1,4 @@
-package U1_Algoritmos.Ej2_MyTimer;
+package MyTimer;
 
 public class MyTimerTester {
     public static void main(String[] args) {
