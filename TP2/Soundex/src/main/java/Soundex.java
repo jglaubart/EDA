@@ -10,7 +10,7 @@ public class Soundex {
         }
 
         StringBuilder ans = new StringBuilder("" + first);
-        for(int i=1; i<x.length; i++){
+        for(int i=1; i<x.length && i <= 4 ; i++){
             if(x[i] != x[i-1] && x[i]!= '0'){
                 ans.append(x[i]);
             }
