@@ -26,6 +26,7 @@ public class Levenshtein {
         return dp[m][n];
     }
 
+
     public static double normalizedSimilarity(String str1, String str2) {
         return 1 - (double) distance(str1, str2) / Math.max(str1.length(), str2.length());
     }

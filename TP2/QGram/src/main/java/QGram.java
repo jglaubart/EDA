@@ -23,11 +23,14 @@ public class QGram {
         return tokens;
     }
 
-    public  void printTokens(String string) {
+    public void printTokens(String string) {
         HashMap<String, Integer> tokens = getTokens(string);
+        System.out.println("Tokens de " + string + ":");
         for(Map.Entry<String, Integer> token : tokens.entrySet()) {
             System.out.println(token.getKey() + " " + token.getValue());
+
         }
+        System.out.println("\n");
     }
 
     public double similarity(String s1, String s2) {
