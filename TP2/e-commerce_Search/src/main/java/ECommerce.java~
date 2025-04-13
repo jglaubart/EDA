@@ -80,7 +80,6 @@ public class ECommerce {
             double QGramDistance = qGram.distance(producto, p);
             double metaphoneDistance = levenshtein.distance(metaphone.encode(producto), metaphone.encode(p));
 
-
             // Encuentra la distancia máxima y el nombre del algoritmo ganador
             MyPair<Double, String> bestMatch = maxWithAlgorithm(
                     soundexDistance, "Soundex",

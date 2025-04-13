@@ -1,0 +1,2 @@
+public interface IndexParametricService<T extends Comparable<? super T>>{
+}

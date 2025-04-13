@@ -1,0 +1,30 @@
+public class MyPair<K extends Comparable<? super K>, M> implements Comparable<MyPair<K, M>>{
+    private final K key;
+    private M value;
+
+    public MyPair(K key, M value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public K getKey() {
+        return key;
+    }
+
+    public M getValue() {
+        return value;
+    }
+
+    public void setValue(M value) {
+        this.value = value;
+    }
+
+    public String toString() {
+        return "Distancia: " + key + " Algoritmo: " + value;
+    }
+
+    @Override
+    public int compareTo(MyPair<K, M> o) {
+        return this.key.compareTo(o.key);
+    }
+}

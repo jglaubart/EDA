@@ -1,0 +1,30 @@
+public class ExactSearch {
+    public static int indexOf(char[] query, char[] text) {
+        int ans = -1;
+        int j = 0;
+
+        for (int i = 0; i < text.length - query.length + 1; i++) {
+            if(query[j] == text[i]) ans = i;
+
+            while(j < query.length && query[j] == text[i]) {
+                j++;
+                i++;
+            }
+
+            if(j == query.length) {return ans;}
+            else {
+                j = 0;
+                ans = -1;
+                i--;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        char[] query = "hola".toCharArray();
+        char[] text = "holhola".toCharArray();
+        System.out.println(indexOf(query, text));
+    }
+}
+
