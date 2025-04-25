@@ -1,0 +1,5 @@
+package C1_2023;
+
+public class MinPathFinder {
+    public int findMinPath(int[][] weightMatrix)
+}

@@ -9,6 +9,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -29,15 +31,15 @@ public class IndexBuilder {
 	}
 
 	private static void createIndex() throws IOException 	{
-		
-		
+
+
 		IndexWriter index = initIndexWriter();
-		
+
 		// docs directory
 		// agrego los documentos desde el source directory. solo los txt
 		List<String> fileIterator = Utils.listFilesRelativePath( "docs", Arrays.asList("txt") );
 	    for (String docFileName : fileIterator) {
-	    	
+
 	    	System.out.println(docFileName);
 
 	    	// Lucene doc
@@ -49,7 +51,7 @@ public class IndexBuilder {
 			aDoc.add(new TextField("content",  new BufferedReader(
 					new InputStreamReader(theFile, StandardCharsets.UTF_8))));
 
-			
+
 			// el Path donde se encuentra fisicamente el documento no me interesa indexar (nadie busca por path)
 			// pero lo quiero desplegar.
 			FieldType aFieldPath = new FieldType();
@@ -60,24 +62,25 @@ public class IndexBuilder {
 
 			index.addDocument(aDoc);
 		}
-	
+
 		index.close();  
 	}
 
-	
+
 	private static IndexWriter initIndexWriter() throws IOException {
-		
+
 		// target index directory
 		Directory indexDir = FSDirectory.open( Paths.get(Utils.getPrefixDir() + "/index/"));
-		
-		IndexWriterConfig indexConfig = new IndexWriterConfig(new StandardAnalyzer());
-		
+
+		//IndexWriterConfig indexConfig = new IndexWriterConfig(new SimpleAnalyzer());
+		IndexWriterConfig indexConfig = new IndexWriterConfig(new SimpleAnalyzer());
+
 		// create or overwrites an existing one
 		indexConfig.setOpenMode(OpenMode.CREATE);  // other options are available
 
 		return new IndexWriter(indexDir, indexConfig);
-		
+
 	}
-	
+
 
 }

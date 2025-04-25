@@ -31,7 +31,7 @@ public class TestAnalyzer  {
 		
 		  Analyzer a;
 			  
-//		  a= new SimpleAnalyzer();  // separa con los espacios, saca signos de puntuacion, pasa a minuscula
+		  a = new SimpleAnalyzer();  // separa con los espacios, saca signos de puntuacion, pasa a minuscula
 		  
 //	      a= new StandardAnalyzer(); // pasa a min, mantiene los . en donde esta sin espacios por ser url
 		  
@@ -40,7 +40,7 @@ public class TestAnalyzer  {
 //	  	  CharArraySet sw = StopFilter.makeStopSet("de", "y");
 //	      a= new StopAnalyzer(sw);   //saca palabras
 	      
-	      a= new SpanishAnalyzer();
+//	      a= new SpanishAnalyzer();
 
 		  String fieldValue= "Estructura de datos. Y algoritmos; 2020-Q1  en eda.ita.edu";
 		  

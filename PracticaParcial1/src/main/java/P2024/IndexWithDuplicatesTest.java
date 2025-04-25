@@ -1,0 +1,91 @@
+package P2024;
+
+import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+
+public class IndexWithDuplicatesTest {
+    
+    @Test
+    public void testCase1() {
+        // Caso de Uso 1 - Índices Ordenados sin Elementos Duplicados
+        IndexWithDuplicates index1 = new IndexWithDuplicates();
+        index1.initialize(new int[] {1, 3, 5, 7});
+        IndexWithDuplicates index2 = new IndexWithDuplicates();
+        index2.initialize(new int[] {2, 4, 6, 8});
+        index1.merge(index2);
+        
+        // Verificar resultadoe
+        int[] expected = {1, 2, 3, 4, 5, 6, 7, 8};
+        assertArrayEquals(expected, Arrays.copyOf(index1.getIndexedData(), index1.getIndexedData().length));
+        
+        // Verificar que index2 no fue modificado
+        int[] originalIndex2 = {2, 4, 6, 8};
+        assertArrayEquals(originalIndex2, Arrays.copyOf(index2.getIndexedData(), index2.getIndexedData().length));
+    }
+
+    @Test
+    public void testCase2() {
+        // Caso de Uso 2 - Índices Ordenados con Elementos Duplicados
+        IndexWithDuplicates index1 = new IndexWithDuplicates();
+        index1.initialize(new int[] {1, 1, 3, 5, 7});
+        IndexWithDuplicates index2 = new IndexWithDuplicates();
+        index2.initialize(new int[] {2, 4, 4, 6, 8});
+        index1.merge(index2);
+        
+        // Verificar resultado
+        int[] expected = {1, 1, 2, 3, 4, 4, 5, 6, 7, 8};
+        assertArrayEquals(expected, Arrays.copyOf(index1.getIndexedData(), index1.getIndexedData().length));
+        
+        // Verificar que index2 no fue modificado
+        int[] originalIndex2 = {2, 4, 4, 6, 8};
+        assertArrayEquals(originalIndex2, Arrays.copyOf(index2.getIndexedData(), index2.getIndexedData().length));
+    }
+
+    @Test
+    public void testCase3() {
+        // Caso de Uso 3 - Índices Ordenados con Diferentes Cantidades de Elementos
+        IndexWithDuplicates index1 = new IndexWithDuplicates();
+        index1.initialize(new int[] {1, 3, 5});
+        IndexWithDuplicates index2 = new IndexWithDuplicates();
+        index2.initialize(new int[] {2, 4, 6, 8, 10});
+        index1.merge(index2);
+        
+        // Verificar resultado
+        int[] expected = {1, 2, 3, 4, 5, 6, 8, 10};
+        assertArrayEquals(expected, Arrays.copyOf(index1.getIndexedData(), index1.getIndexedData().length));
+        
+        // Verificar que index2 no fue modificado
+        int[] originalIndex2 = {2, 4, 6, 8, 10};
+        assertArrayEquals(originalIndex2, Arrays.copyOf(index2.getIndexedData(), index2.getIndexedData().length));
+    }
+
+    @Test
+    public void testCaseEmpty() {
+        // Caso adicional - Merge con un índice vacío
+        IndexWithDuplicates index1 = new IndexWithDuplicates();
+        index1.initialize(new int[] {1, 3, 5});
+        IndexWithDuplicates index2 = new IndexWithDuplicates();
+        index1.merge(index2);
+        
+        // Verificar que index1 no cambió
+        int[] expected = {1, 3, 5};
+        assertArrayEquals(expected, Arrays.copyOf(index1.getIndexedData(), index1.getIndexedData().length));
+    }
+
+    @Test
+    public void testCaseMergeIntoEmpty() {
+        // Caso adicional - Merge en un índice vacío
+        IndexWithDuplicates index1 = new IndexWithDuplicates();
+        IndexWithDuplicates index2 = new IndexWithDuplicates();
+        index2.initialize(new int[] {2, 4, 6});
+        index1.merge(index2);
+        
+        // Verificar que index1 tiene los elementos de index2
+        int[] expected = {2, 4, 6};
+        assertArrayEquals(expected, Arrays.copyOf(index1.getIndexedData(), index1.getIndexedData().length));
+        
+        // Verificar que index2 no fue modificado
+        assertArrayEquals(expected, Arrays.copyOf(index2.getIndexedData(), index2.getIndexedData().length));
+    }
+}

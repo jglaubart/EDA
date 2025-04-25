@@ -1,1 +1,1 @@
-prefixDir=C:/Users/admin/Documents/ITBA/A2_2C/EDA/TP2b/Lucene
+prefixDir=C:/Users/admin/Documents/ITBA/A2_2C/EDA/TP2c/Lucene

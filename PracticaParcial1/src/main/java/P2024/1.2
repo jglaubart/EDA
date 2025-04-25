@@ -1,0 +1,22 @@
+Complejiidad temporal:
+- loop se ejecuta N veces (N = longitud de la lista)
+- Operaciones:
+    - Item current = first;          // O(1) - asignación simple
+    - first = first.next;           // O(1) - asignación simple
+    - int targetList = getRandom(); // O(1) - número aleatorio
+    - Insercion al final de la lista (dos operaciones) // O(1) ya que hay un puntero directo al ultimo
+    Entonces cada loop es de complejidad 5*O(1) = O(1)
+
+- Loop final: O(k) con k = nLists
+Entonces la complejidad temporal es: N*O(1) + O(k) = O(N)
+
+
+Complejidad espacial:
+- Lista[] result = new Lista[nLists];  // O(nLists) (El array se recorre al menos una vez entero para crear las listas)
+- No se crean nuevos nodos, solo se cambian los punteros ---> O(1) cada asignacion, O(N) en total
+- Variables auxiliares:
+    Item current;        // O(1)
+    int targetList;      // O(1)
+    int i;              // O(1)
+
+Entonces la complejidad espacial es: O(nLists) + O(N) + O(1) + O(1) + O(1) = O(N)

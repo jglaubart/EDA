@@ -1,0 +1,11 @@
+Espacial: O(1)
+Unicamente declara variables:
+- int n  O(1)
+- int maxSum  O(1)
+- int currentSum  O(1)
+- int i  O(1)
+
+Termporal: O(n)
+- ciclo for (int i = 0; i < n; i++)    O(n)
+- Integer.MIN_VALUE  O(1)
+- Math.max  O(1)  ---> Comparacion

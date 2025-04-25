@@ -1,6 +1,7 @@
 package core;
 
 
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.search.*;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -18,68 +19,68 @@ import java.nio.file.Paths;
 
 
 public class TheSearcherQueryParser {
-	
+
 	private static IndexReader getIndexReader() throws IOException {
-		
+
 		// target index directory
 		Directory indexDir = FSDirectory.open( Paths.get(Utils.getPrefixDir() + "/index/"));
-		
+
 		return DirectoryReader.open( indexDir );
-		
+
 	}
 
 
     public static void main( String[] args ) {
-    	
+
         try {
            	IndexReader index = getIndexReader();
         	IndexSearcher searcher= new IndexSearcher(index);
         	searcher.setSimilarity(new ClassicSimilarity());
-        	
- 	
+
+
         	//String queryStr= "content:game";
-			String queryStr= "content:ga*";  //prefijo
+			//String queryStr= "content:ga*";  //prefijo
 			//String queryStr= "content:{gam TO gum]"; //Range ---> docs con palabras en ese rango (en este caso, game esta entre (gam y gum]
 			//String queryStr= "content:\"store game\""; //Phras Query
 			//String queryStr= "content:g??e"; //Wildcard Query
 			//String queryStr= "content:gne~2";  //Fuzzy Query ---> cantidad posibles de operaciones
 			//String queryStr= "content:store OR content:game"; // Boolean Query ---> content:store content:game y content:store || content:game --> son lo mismo
 			//String queryStr= "content:game AND NOT content:store";
+			String queryStr= "content:Fly OR content:Moon";
 
-        	QueryParser queryparser = new QueryParser(null, new StandardAnalyzer() );
+        	QueryParser queryparser = new QueryParser(null, new SimpleAnalyzer() );
          	Query query= queryparser.parse(queryStr);
-        	
+
         	// run the query
         	long startTime = System.currentTimeMillis();       	
         	TopDocs topDocs = searcher.search(query, 20);
         	long endTime = System.currentTimeMillis();
-        	
+
 			// show the resultset
 			System.out.println(String.format("Query=> %s\n", query));
 			System.out.println(String.format("%d topDocs documents found in %d ms.\n", topDocs.totalHits,
 					(endTime - startTime) ) );
-        	
+
 			ScoreDoc[] orderedDocs = topDocs.scoreDocs;
 
 			int position= 1;
 			System.out.println("Resultset=> \n");
-			
+
 			for (ScoreDoc aD : orderedDocs) {
-				
+
 				// print info about finding
-				int docID= aD.doc;
+				int docID = aD.doc;
 				double score = aD.score;
-				System.out.println(String.format("position=%-10d  score= %10.7f", position, score ));
-				
-				// print docID, score
-				System.out.println(aD);
-				
+
 				// obtain the stored fields
 				Document aDoc = searcher.doc(docID);
-				System.out.println("stored fields: " + aDoc);
-				//Explanation rta = searcher.explain(query, docID);
-	            //System.out.println(rta);
-	         
+				String path = aDoc.get("path");
+				String filename = path.substring(path.lastIndexOf("\\") + 1);
+
+				// Print the result in the required format
+				System.out.println(String.format("En la posición %d: score = %f, documento = docid %d, archivo %s", 
+					position, score, docID, filename));
+
 	            position++;
 	            System.out.println();
 			}
@@ -90,6 +91,6 @@ public class TheSearcherQueryParser {
             e.printStackTrace();
         }
     }
-    
+
 
 }

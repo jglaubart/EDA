@@ -36,7 +36,7 @@ public class TheSearcher {
         	
         	// field of interest
         	String fieldName = "content";
-        	String queryStr= "game";       //palabra que busca
+        	String queryStr= "Fly";       //palabra que busca
 
         	Term myTerm = new Term(fieldName, queryStr);
         	//Query query= new TermQuery(myTerm);
@@ -45,6 +45,7 @@ public class TheSearcher {
 			//Query query = new PhraseQuery(fieldName, "video","review", "game");
 			//Query query = new WildcardQuery(myTerm); //queryStr = "g*e" es como game
 			Query query = new FuzzyQuery(myTerm); //se fija si con las distintas operaciones (incluyendo trasposicion) llega a la palabra. Por default 2 ops
+
 
         	// run the query
         	long startTime = System.currentTimeMillis();       	

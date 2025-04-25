@@ -44,7 +44,7 @@ public class EvaluatorPostfija {
                 auxi.push(  eval(s, operand1 , operand2) );
             }
         }
-        double rta= auxi.pop();
+        double rta = auxi.pop();
         if (auxi.empty())
             return rta;
 

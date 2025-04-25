@@ -1,0 +1,58 @@
+package LinkedList;
+
+public class Node<T extends Comparable<? super T>> {
+    private T data;
+    private Node next;
+
+    private Node(T data, Node next) {
+        this.data = data;
+        this.next = next;
+    }
+
+    private Node insert(T data, boolean[] rta) {
+        if (this.data.compareTo(data) == 0) {
+            System.err.println(String.format("Insertion failed %s", data));
+            rta[0] = false;
+            return this;
+        }
+        if (this.data.compareTo(data) < 0) {
+            // Ultimo ?
+            if (next == null) {
+                rta[0] = true;
+                next = new Node(data, null);
+                return this;
+            }
+            next = next.insert(data, rta);
+            return this;
+        }
+        // Estoy en donde quiero insertar
+        rta[0] = true;
+        return new Node(data, this);
+    }
+
+    private Node remove(T data, boolean[] rta) {
+        if(this.data.compareTo(data) == 0){
+            rta[0] = true;
+            return this.next;
+        }
+        Node current = this;
+        Node prev = null;
+        if(data == null){
+            rta[0] = false;
+            return null;
+        }
+        if(data.compareTo(this.data) == 0){
+            rta[0] = true;
+            return this.next;
+        }
+        while(data.compareTo(current.data) > 0){
+            prev = current;
+            current = current.next;
+        }
+        if(data.compareTo(current.data) == 0){
+            prev.next = current.next;
+            rta[0] = true;
+        }
+        return this;
+    }
+}
