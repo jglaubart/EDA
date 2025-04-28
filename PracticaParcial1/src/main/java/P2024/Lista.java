@@ -96,6 +96,47 @@ public class Lista{
     	return retVal;
 	}
 
+	//    Ejercicio extra
+//    debe distribuir los nodos de la lista original en nLists nuevas listas por turnos:
+//    El primer nodo va a la lista 0, el segundo a la lista 1, el tercero a la lista 2, ..., el n-ésimo vuelve a la lista 0 y así sucesivamente (circular).
+//    No se deben crear nuevos nodos Item.
+//    La lista original debe quedar vacía (first = null, last = null).
+//    Cada ranura del arreglo debe tener una Lista válida (no null).
+
+	private Lista[] partitionAlternating(int nLists){
+		Lista[] ans = new Lista[nLists];
+		if(nLists <= 0)
+			throw new RuntimeException("cantidad de listas debe ser mayor que 0");
+		if(nLists == 1) return new Lista[]{this};
+
+		for(int i=0; i<nLists; i++) ans[i] = new Lista();
+
+		if(first == null) return ans;
+
+		int count = 0;
+		while(first != null){
+			Item current = first;
+			first = first.next;
+			current.next = null;
+
+			if(count == nLists) count = 0;
+
+			if(ans[count].first == null){
+				ans[count].first = current;
+				ans[count].last = current;
+			} else{
+				ans[count].last.next = current;
+				ans[count].last = current;
+			}
+
+			count ++;
+		}
+
+		return ans;
+	}
+
+
+
 	private final class Item {
     	private final Integer numero;
     	private Item next = null;
