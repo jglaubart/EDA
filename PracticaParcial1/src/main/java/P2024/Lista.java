@@ -45,7 +45,7 @@ public class Lista{
 	}
 	
 
-	private  Lista[] randomSplitListas(Integer nLists) {
+	private Lista[] randomSplitListas(Integer nLists) {
 		if( nLists <= 0 )
 			throw new RuntimeException("cantidad de listas debe ser mayor que 0");
         if(nLists==1) return new Lista[]{this};
@@ -167,23 +167,23 @@ public class Lista{
 		System.out.println();
 	}
 
-//	public static void main(String[] args) {
-//		Lista l = new Lista( 10 ); // l sera: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
-//		// lista original al principio
-//		System.out.print("First, the original list is ");
-//		l.dump();
-//
-//		// distribuir entre 4
-//		Lista[] caso = l.randomSplitListas( 4 );
-//
-//		for(int rec= 0; rec<caso.length; rec++) {
-//		System.out.print(String.format("list %d is ", rec));
-//			caso[rec].dump();
-//		}
-//		// lista original al final
-//		System.out.print("Finally, the original list is ");
-//		l.dump();
-//}
+	public static void main(String[] args) {
+		Lista l = new Lista( 10 ); // l sera: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+		// lista original al principio
+		System.out.print("First, the original list is ");
+		l.dump();
+
+		// distribuir entre 4
+		Lista[] caso = l.randomSplitListas( 4 );
+
+		for(int rec= 0; rec<caso.length; rec++) {
+		System.out.print(String.format("list %d is ", rec));
+			caso[rec].dump();
+		}
+		// lista original al final
+		System.out.print("Finally, the original list is ");
+		l.dump();
+}
 
 	
 //	// caso B (main2)
@@ -226,20 +226,20 @@ public class Lista{
 
 
 //	// caso de uso D (main4)
-	public static void main(String[] args) {
-	Lista l = new Lista(); // l tiene 0 items
-	// lista original al principio
-	System.out.print("First, the original list is ");
-	l.dump();
-	Lista[] caso = l.randomSplitListas( 4 );
-
-	for(int rec= 0; rec<caso.length; rec++) {
-	System.out.print(String.format("list %d is ", rec));
-		caso[rec].dump();
-	}
-	// lista original al final
-	System.out.print("Finally, the original list is ");
-	l.dump();
-	}
+//	public static void main(String[] args) {
+//	Lista l = new Lista(); // l tiene 0 items
+//	// lista original al principio
+//	System.out.print("First, the original list is ");
+//	l.dump();
+//	Lista[] caso = l.randomSplitListas( 4 );
+//
+//	for(int rec= 0; rec<caso.length; rec++) {
+//	System.out.print(String.format("list %d is ", rec));
+//		caso[rec].dump();
+//	}
+//	// lista original al final
+//	System.out.print("Finally, the original list is ");
+//	l.dump();
+//	}
 
 }

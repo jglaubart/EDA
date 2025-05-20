@@ -39,7 +39,7 @@ public class ProximityIndex {
         int r = size - 1;
 
         while(l<=r){
-            int mid = (l+r)/2;
+            int mid = l +(r-l)/2;
             if (elements[mid].equals(element)) {
                 return mid;
             } else if (elements[mid].compareTo(element) < 0) {

@@ -73,7 +73,7 @@ public class IndexBuilder {
 		Directory indexDir = FSDirectory.open( Paths.get(Utils.getPrefixDir() + "/index/"));
 
 		//IndexWriterConfig indexConfig = new IndexWriterConfig(new SimpleAnalyzer());
-		IndexWriterConfig indexConfig = new IndexWriterConfig(new SimpleAnalyzer());
+		IndexWriterConfig indexConfig = new IndexWriterConfig(new StandardAnalyzer());
 
 		// create or overwrites an existing one
 		indexConfig.setOpenMode(OpenMode.CREATE);  // other options are available

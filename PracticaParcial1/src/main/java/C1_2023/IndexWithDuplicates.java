@@ -82,6 +82,7 @@ public class IndexWithDuplicates<E extends Comparable<E> > {
     }
 
 
+
     public static void main(String[] args) {
         IndexWithDuplicates<Integer> idx = new IndexWithDuplicates<>();
         idx.initialize(  new Integer[] {100, 50, 30, 50, 80, 10, 100, 30, 20, 138} );   // ---> {10, 20, 30, 30, 50, 50, 80, 100, 100, 138}

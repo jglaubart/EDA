@@ -46,9 +46,9 @@ public class TheSearcherQueryParser {
 			//String queryStr= "content:gne~2";  //Fuzzy Query ---> cantidad posibles de operaciones
 			//String queryStr= "content:store OR content:game"; // Boolean Query ---> content:store content:game y content:store || content:game --> son lo mismo
 			//String queryStr= "content:game AND NOT content:store";
-			String queryStr= "content:Fly OR content:Moon";
+			String queryStr= "content:\\\"review game game,\\\" OR content:\\\",,store,,game\\\"";
 
-        	QueryParser queryparser = new QueryParser(null, new SimpleAnalyzer() );
+        	QueryParser queryparser = new QueryParser(null, new StandardAnalyzer() );
          	Query query= queryparser.parse(queryStr);
 
         	// run the query
