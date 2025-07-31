@@ -1,0 +1,31 @@
+"content:IEDO~ AND content:[PI TO SOS]"
+
+- Primera parte de la consulta: IEDO~ 
+Es una Fuzzy Query
+Busca términos similares a "IEDO" con una distancia de edición de hasta 2 operaciones.
+En el archivo d.txt, no hay términos explícitos similares a "IEDO". Sin embargo, aparece "video" que requiere solo 2 operaciones (remove la V y cambiar la E por la D).
+
+- Segunda parte: [PI TO SOS] 
+- Es una Range Query
+Busca términos alfabéticamente entre "PI" y "SOS" (inclusive).
+En el archivo d.txt, el término "review" no está en este rango, pero "game" si
+
+Conclusion:
+Ninguno de los otros archivos coinciden por lo que devuelve solo el d.txt
+
+"content:\"review game game,\" OR content:\",,store,,game\""
+Condición 1: "review game game,"
+Busca la frase exacta "review game game,", incluyendo el orden y los caracteres (como la coma al final).
+Ningún archivo contiene esta frase exacta.
+
+
+Condición 2: ",,store,,game"
+Busca la frase exacta ",,store,,game", incluyendo las comas dobles.
+Solo el archivo a.txt contiene esta frase exacta.
+
+a.txt: Contiene la frase ",,store,,game". Cumple.
+c.txt: Solo contiene game, pero no cumple con ninguna de las frases exactas.
+d.txt: Contiene Game video, review game., pero no cumple con ninguna de las frases exactas.
+Por lo tanto, el archivo a.txt es el único que satisface la consulta.
+
+Conclusion: solo devuelve el archivo a.txt

@@ -1,0 +1,49 @@
+1. Hash inicial:
+   h(8) = 8 % 10 = 8
+
+2. Intentar insertar en la posición 8:
+   - Posición 8: OCUPADO → colisión
+
+3. Rehashing cuadrático:
+   i = 1: (8 + 1^2) % 10 = 9 → OCUPADO
+   i = 2: (8 + 2^2) % 10 = 2 → OCUPADO
+   i = 3: (8 + 3^2) % 10 = 7 → BAJA FÍSICA → Lo inserto en este espacio ya que no esta ocupado de forma fisica
+
+---> Ya hay 8 elementos ocupados → 8/10 = 0.8 ---> supera 0.75 ---> RESIZE!
+
+Resize:
+Nuevo tamaño = 10 * 1.5 = 15
+
+
+nueva tabla (hash = key % 15):
+
+(30, "P")   → 30 % 15 = 0
+(22, "E")   → 22 % 15 = 7
+(14, "A")   → 14 % 15 = 14
+(25, "D")   → 25 % 15 = 10
+(36, "B")   → 36 % 15 = 6
+(18, "C")   → 18 % 15 = 3
+(39, "Z")   → 39 % 15 = 9
+(8,  "T")   → 8  % 15 = 8
+
+Ranuras chequeadas en la inserción: 8 → 9 → 2 → 7
+
+Tabla final (tamaño 15):
+
+pos | (key, value)
+----|--------------
+0   | <30, "P">
+1   |
+2   |
+3   | <18, "C">
+4   |
+5   |
+6   | <36, "B">
+7   | <22, "E">
+8   | <8, "T">
+9   | <39, "Z">
+10  | <25, "D">
+11  |
+12  |
+13  |
+14  | <14, "A">
